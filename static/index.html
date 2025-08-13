@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serafim Browser</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="browser-container">
+        <!-- Tab Bar -->
+        <div class="tab-bar drag-region">
+            <button class="new-tab-btn" id="tabModeSwich" title="tabModeSwich"><i class="bi bi-window-sidebar"></i></button>
+            <div class="tabs-list-btn">
+            <div class="tab-list" id="tabList">
+                <!-- Tabs will be dynamically added here -->
+            </div>
+            <button class="new-tab-btn" id="newTabBtn" title="New Tab"><i class="bi bi-plus"></i></button>
+        </div>
+            <div class="window-controls glass-container">
+                <button id="minimizeBtn" onclick="electronAPI.windowControl('minimize')"><i class="bi bi-dash-lg"></i></button>
+                <button id="maximizeBtn" onclick="electronAPI.windowControl('maximize')"><i class="bi bi-fullscreen"></i></button>
+                <button id="closeBtn" onclick="electronAPI.windowControl('close')"><i class="bi bi-x-circle-fill"></i></button>
+            </div>
+        </div>
+
+        
+
+        <!-- Webview Container -->
+        <div class="webview-container">
+            <webview id="webview" src="https://www.google.com"></webview>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar" style="background-color: transparent;">
+            <div class="nav-controls">
+                <dropdown class="additionalMenuDD glass-container" >
+                    <i class="bi bi-three-dots" id="menuToggle"></i>
+    
+    
+                    <div class="dropdown-content" id="dropdownContent">
+                        <button class="dropdownBtn" id="settingsBtn"><i class="bi bi-gear"></i></button>
+                        <button class="dropdownBtn" id="historyBtn"><i class="bi bi-archive"></i></button>
+                    </div>
+                </dropdown>
+                <button class="nav-btn glass-container" id="backBtn" title="Go Back"><i class="bi bi-arrow-left"></i></button>
+                <button class="nav-btn glass-container" id="forwardBtn" title="Go Forward"><i class="bi bi-arrow-right"></i></button>
+                <button class="nav-btn glass-container" id="reloadBtn" title="Reload"><i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+            
+            <div class="address-bar">
+                <input type="text" class="glass-container" id="urlInput" placeholder="Search or enter URL" />
+                <div class="mode-switch" >
+                    <button class="mode-btn active" id="webBtn" title="Web Search" data-mode="web"><i class="bi bi-globe2"></i></button>
+                    <button class="mode-btn" id="aiBtn" title="AI Search" data-mode="ai"><i class="bi bi-perplexity"></i></button>
+                </div> 
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="render.js"></script>
+    <script src="styles/liquid_glass.js"></script>
+        
+</body>
+</html>

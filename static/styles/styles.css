@@ -1,0 +1,633 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* background-color: #f5f5f5; */
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.browser-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    /* background-color: #ffffff; */
+    overflow: hidden;
+}
+
+/* Tab Bar */
+.tab-bar {
+    display: flex;
+    /* background-color: #f8f9fa; */
+    border-bottom: 1px solid #e9ecef;
+    height: 40px;
+    align-items: center; /* Space for window controls */
+    position: relative;
+}
+
+.tab-list {
+    display: flex;
+    flex: 1;
+    gap: 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%; /* Account for new tab button */
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    /* background-color: #e9ecef; */
+    border: 1px solid #dee2e6;
+    border-radius: 4px 4px 0 0 !important;
+    padding: 8px 12px  !important;
+    min-width: 80px !important;
+    max-width: none !important;
+    flex: 1 !important;
+    cursor: pointer !important;
+    /* max-width: 10rem !important; */
+    transition: all 0.2s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab.icon-only {
+    min-width: 40px !important;
+    padding: 8px !important;
+    justify-content: center;
+}
+
+.tab.icon-only .tab-content {
+    justify-content: center;
+}
+
+.tab.icon-only .tab-icon {
+    margin-right: 0;
+}
+
+/* Hide title when tab is narrow - show only icon */
+.tab.narrow .tab-title {
+    display: none;
+}
+
+/* Hide icon when tab is very narrow - show only title */
+.tab.very-narrow .tab-icon {
+    display: none;
+}
+
+/* Show only icon when tab is extremely narrow */
+.tab.icon-only .tab-title {
+    display: none;
+}
+
+.tab.icon-only .tab-close {
+    display: none;
+}
+
+.tab.icon-only {
+    min-width: 40px !important;
+    padding: 8px !important;
+    justify-content: center;
+}
+
+.tab-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.tab-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.tab.active {
+    /* background-color: #ffffff; */
+    border-bottom-color: #ffffff;
+    z-index: 1;
+}
+
+.tab.active.icon-only .tab-icon {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* .tab:hover {
+     background-color: #f8f9fa; 
+} */
+
+.tab-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    min-width: 0;
+}
+
+.tab-close {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 2px;
+    margin-left: 8px;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.tab-close:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.new-tab-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.new-tab-btn:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    /* background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef; */
+    padding: 0px;
+    gap: 0px;
+    position: absolute;
+    bottom: 8px;
+    align-self: center;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-btn {
+    background: none;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    padding: 8px 12px !important;
+    cursor: pointer;
+    color: #495057;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    min-width: 3rem;
+
+}
+
+.nav-btn:hover {
+    /* background-color: #f8f9fa; */
+    border-color: #adb5bd;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.address-bar {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+    margin: 8px;
+}
+
+#urlInput {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+#urlInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.go-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px !important;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.go-btn:hover {
+    background-color: #0056b3;
+}
+
+.search-bar {
+    display: flex;
+    gap: 5px;
+}
+
+#searchInput {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    width: 200px;
+}
+
+#searchInput:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+}
+
+.search-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+    background-color: #1e7e34;
+}
+
+/* Webview Container */
+.webview-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: calc(100vh - 120px); /* Explicit height */
+}
+
+webview {
+    width: 100%;
+    height: 100%;
+    border: none;
+    flex: 1;
+    min-height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Loading indicator */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .address-bar,
+    .search-bar {
+        width: 100%;
+    }
+    
+    #searchInput {
+        width: 100%;
+    }
+    
+    .tab {
+        min-width: 100px;
+    }
+    
+    .tab-bar {
+        padding-right: 100px; /* Less space on mobile */
+    }
+    
+    .new-tab-btn {
+        right: 110px; /* Adjust for mobile */
+    }
+}
+
+/* Ensure iframe/webview takes full height */
+iframe, webview {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+#webview {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .glass-container {
+    padding: 2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+
+  .window-controls {
+    display: flex;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 10;
+  }
+  
+  .window-controls button {
+    background: none;
+    border: solid 2px;
+    border-color: transparent;
+    color: white;
+    padding: 0 10px;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .window-controls button:hover {
+    
+    border-color: #6c757d;
+    border-radius: 20px;
+  }
+
+  .window-controls button#minimizeBtn {
+    color: yellow;
+  }
+
+  .window-controls button#maximizeBtn {
+    color: mediumslateblue;
+  }
+
+  .window-controls button#closeBtn {
+    color: red;
+  }
+
+
+.tabs-list-btn {
+    display: inline-flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 80% !important; /* Account for window controls and new tab button */
+    flex: 1;
+}
+
+
+
+.mode-switch {
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    transition: ease, 0.3;
+  }
+  
+  .mode-btn {
+    padding: 10px 18px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: ease, 0.3;
+    transition: background 0.3s, color 0.3s;
+
+  }
+  
+  .mode-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 16px;
+    transition: ease, 0.3;
+  }
+  
+  .mode-switch:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  
+  .nav-controls,
+  .mode-switch,
+  .additionalMenuDD {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Когда курсор наводится на nav-bar — всё проявляется */
+  .nav-bar:hover .nav-controls,
+  .nav-bar:hover .mode-switch,
+  .nav-bar:hover .additionalMenuDD {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+  }
+
+
+  
+  .nav-bar:hover {
+    background: rgba(0, 0, 0, 0.5); /* Тёмнее при наведении */
+  }
+  
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* полупрозрачный белый */
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Для тёмной темы можно так */
+  body.dark ::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.2);
+  }
+  
+  body.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+/* Picture-in-Picture Controls */
+.pip-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    z-index: 10001;
+    display: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.pip-controls.show {
+    display: block;
+}
+
+.pip-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    z-index: 10002;
+    display: none;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.pip-indicator.show {
+    display: block;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+
+.additionalMenuDD {
+    position: relative;
+    display: inline-block;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .additionalMenuDD i#menuToggle {
+    font-size: 22px;
+    color: white;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: -200%;
+    right: -25%;
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 8px;
+    border-radius: 10px;
+    z-index: 1000;
+    min-width: 3rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  }
+  
+  .dropdownBtn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 20px;
+  }
+  
+  .dropdownBtn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  

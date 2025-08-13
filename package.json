@@ -1,0 +1,36 @@
+{
+  "name": "projectserafim",
+  "version": "0.0.1",
+  "description": "modern web browser",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "EeveeSnow",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.2",
+    "@electron-forge/maker-squirrel": "^7.8.2",
+    "electron": "^37.2.5"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "assets/icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "setupIcon": "assets/icon.ico"
+          }
+        }
+      ]
+    }
+  }
+}
