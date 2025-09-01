@@ -26,6 +26,8 @@ body {
     /* background-color: #f8f9fa; */
     border-bottom: 1px solid #e9ecef;
     height: 40px;
+    -webkit-app-region: drag;
+    cursor: move;
     align-items: center; /* Space for window controls */
     position: relative;
 }
@@ -37,6 +39,7 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     max-width: 100%; /* Account for new tab button */
+    
 }
 
 .tab {
@@ -47,7 +50,7 @@ body {
     border-radius: 4px 4px 0 0 !important;
     padding: 8px 12px  !important;
     min-width: 80px !important;
-    max-width: none !important;
+    max-width: 240px !important;
     flex: 1 !important;
     cursor: pointer !important;
     /* max-width: 10rem !important; */
@@ -168,6 +171,51 @@ body {
     color: #495057;
 }
 
+.window-controls {
+    display: flex;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 10;
+    -webkit-app-region: no-drag;
+}
+
+.window-controls button {
+  background: none;
+  border: solid 2px;
+  border-color: transparent;
+  color: white;
+  padding: 0 10px;
+  height: 100%;
+    cursor: pointer;
+  }
+  
+  .window-controls button:hover {
+    
+    border-color: #6c757d;
+    border-radius: 20px;
+  }
+
+  .window-controls button#minimizeBtn {
+    color: yellow;
+  }
+
+  .window-controls button#maximizeBtn {
+    color: mediumslateblue;
+  }
+
+
+
+
+.tabs-list-btn {
+    display: inline-flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 80% !important; /* Account for window controls and new tab button */
+    flex: 1;
+    -webkit-app-region: no-drag;
+}
+
 /* Navigation Bar */
 .nav-bar {
     display: flex;
@@ -280,6 +328,7 @@ body {
     background-color: #1e7e34;
 }
 
+
 /* Webview Container */
 .webview-container {
     flex: 1;
@@ -359,68 +408,10 @@ iframe, webview {
     width: 100%;
     height: 100%;
     border: none;
-  }
-
-  .glass-container {
-    padding: 2px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    color: white;
-    text-align: center;
-    transition: color 0.3s ease;
-    text-shadow: 0 0 5px rgba(0,0,0,0.6);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    text-align: center;
-  }
-
-  .window-controls {
-    display: flex;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    z-index: 10;
-  }
-  
-  .window-controls button {
-    background: none;
-    border: solid 2px;
-    border-color: transparent;
-    color: white;
-    padding: 0 10px;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .window-controls button:hover {
-    
-    border-color: #6c757d;
-    border-radius: 20px;
-  }
-
-  .window-controls button#minimizeBtn {
-    color: yellow;
-  }
-
-  .window-controls button#maximizeBtn {
-    color: mediumslateblue;
-  }
-
-  .window-controls button#closeBtn {
-    color: red;
-  }
-
-
-.tabs-list-btn {
-    display: inline-flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    max-width: 80% !important; /* Account for window controls and new tab button */
-    flex: 1;
 }
+
+
+
 
 
 

@@ -1,3 +1,5 @@
+
+
 function getDominantColorFromWebview(webview, callback) {
     webview.capturePage().then(image => {
         const img = new Image();
@@ -52,7 +54,6 @@ class Browser {
     
       
     init() {
-        
         this.setupEventListeners();
         this.createNewTab();
     }
@@ -117,6 +118,15 @@ class Browser {
         document.getElementById('aiBtn').addEventListener('click', () => {
             this.changeSearchMode();
         });
+        document.getElementById('overlayBtn').addEventListener('click', () => {
+            window.electronAPI.toggleOverlay();
+        });
+          
+        document.addEventListener("keydown", (e) => {
+          if ((e.ctrlKey && e.shiftKey && e.code === "KeyI") || e.code === "F12") {
+            window.electronAPI.toggleDevtools();
+          }
+        });
 
         // const toggle = document.getElementById("menuToggle");
         // const dropdown = document.getElementById("dropdownContent");
@@ -134,6 +144,7 @@ class Browser {
         //       this.isOpen = false;
         //     }
         // });
+
         const menuToggle = document.getElementById("menuToggle");
         const dropdownContent = document.getElementById("dropdownContent");
         
@@ -204,7 +215,6 @@ class Browser {
             e.stopPropagation();
             this.closeTab(tab.id);
         });
-
         tabList.appendChild(tabElement);
         this.updateTabWidthClasses();
 

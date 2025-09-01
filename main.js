@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, webFrameMain, dialog  } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -53,6 +53,8 @@ function createWindow() {
       contextIsolation: true,
       enableRemoteModule: false,
       webviewTag: true,
+      resizable: true,
+      movable: true,
       enableBlinkFeatures: 'PictureInPicture',
 
       preload: path.join(__dirname, 'preload.js')
@@ -94,4 +96,50 @@ app.on('certificate-error', (event, webContents, url, error, certificate, callba
   console.log(`Certificate error for ${url}: ${error}`);
   event.preventDefault();
   callback(true); // Временный обход ошибки
+});
+
+ipcMain.on("toggle-devtools", (event) => {
+  const window = BrowserWindow.fromWebContents(event.sender);
+  if (window) {
+    if (window.webContents.isDevToolsOpened()) {
+      window.webContents.closeDevTools();
+    } else {
+      window.webContents.openDevTools({ mode: "detach" });
+    }
+  }
+});
+
+let overlayWindow;
+
+ipcMain.on("toggle-overlay", async () => {
+  // открыть диалог выбора
+  const result = await dialog.showOpenDialog(mainWindow, {
+    properties: ["openFile"],
+    filters: [
+      { name: "Media", extensions: ["jpg", "png", "gif", "mp4", "webm"] }
+    ]
+  });
+
+  if (result.canceled || result.filePaths.length === 0) return;
+  const filePath = result.filePaths[0];
+
+  if (!overlayWindow) {
+    overlayWindow = new BrowserWindow({
+      width: 300,
+      height: 300,
+      frame: false,
+      alwaysOnTop: true,
+      transparent: true,
+      backgroundColor: "#00000000",
+      webPreferences: {
+        preload: path.join(__dirname, "preload.js"),
+        contextIsolation: true,
+        nodeIntegration: false
+      }
+    });
+
+    overlayWindow.loadFile("static/overlay.html");
+  }
+
+  overlayWindow.webContents.send("load-media", filePath);
 });

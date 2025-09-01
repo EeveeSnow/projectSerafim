@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serafim Browser</title>
+    <link rel="stylesheet" href="styles/min-styles.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
@@ -15,8 +16,8 @@
             <div class="tabs-list-btn">
             <div class="tab-list" id="tabList">
                 <!-- Tabs will be dynamically added here -->
+                <button class="new-tab-btn" id="newTabBtn" title="New Tab"><i class="bi bi-plus"></i></button>
             </div>
-            <button class="new-tab-btn" id="newTabBtn" title="New Tab"><i class="bi bi-plus"></i></button>
         </div>
             <div class="window-controls glass-container">
                 <button id="minimizeBtn" onclick="electronAPI.windowControl('minimize')"><i class="bi bi-dash-lg"></i></button>
@@ -40,6 +41,7 @@
     
     
                     <div class="dropdown-content" id="dropdownContent">
+                        <button class="dropdownBtn" id="overlayBtn"><i class="bi bi-window-stack"></i></button>
                         <button class="dropdownBtn" id="settingsBtn"><i class="bi bi-gear"></i></button>
                         <button class="dropdownBtn" id="historyBtn"><i class="bi bi-archive"></i></button>
                     </div>
